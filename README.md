@@ -244,7 +244,7 @@ flowchart TD
 ### V2 БФТ-конвейер: Fast → Deep → Sync
 - `/bft-fast <summary>` — быстрое письмо-seed (≤5 мин) + авто-форк фоновой глубины (`--no-deep` отключает).
 - Deep (`bft-deep-swarm` / `/bft-deep`) — Обогатитель: наращивает seed по 3 осям (ценность / what-if / границы), автономно, с полным контекстом.
-- Sync — укладка в канон-структуру MTS + `/bft-validate`. Канонический `bft-writer` = ориентир качества, не заменяется.
+- Sync — укладка в корпоративную канон-структуру + `/bft-validate`. Канонический `bft-writer` = ориентир качества, не заменяется.
 - Стоп на валидированном черновике; запись в JIRA/Confluence (`/bft-deliver`) — ручной гейт PO.
 - Качество гарантируется merge-гейтом: `skills/bft-deep-swarm/resources/eval_rubric.md` (7 метрик, hallucination=0).
 

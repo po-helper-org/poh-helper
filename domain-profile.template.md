@@ -154,7 +154,7 @@ tracker:
 
   # --- Метаданные проекта для BUILD-прохода (/sprint-build, /sprint-activate) ---
   # Резолвятся один раз через discovery в /sprint-sync. Пусто → навык помечает [УТОЧНИТЬ]
-  # и запрашивает через MCP (не гадать id!). Значения ниже — ИЛЛЮСТРАТИВНЫЕ (кейс GDSLV).
+  # и запрашивает через MCP (не гадать id!). Значения ниже — ИЛЛЮСТРАТИВНЫЕ (кейс PROJ).
   epic_link_field: "customfield_10101"  # поле связи история→эпик (Jira Server/DC — Epic Link, НЕ parent)
   sprint_field:    "customfield_10007"  # поле спринта (или board_id ниже)
   board_id:        ""                   # id доски для операций со слотами спринтов
@@ -282,8 +282,8 @@ capacity:
 # Дизайн-система презентации квартала (/okr-present). Пусто → дефолты эталона.
 present:
   product_display_name: ""            # дефолт: profile.product
-  footer_subtitle:      ""            # напр. «витрина Ticketland»
-  accent_color:         "#E4002B"
+  footer_subtitle:      ""            # напр. «витрина Афиша»
+  accent_color:         "#C05621"
   heading_color:        "#1C2333"
   body_color:           "#434C60"
   muted_color:          "#8B94A6"
@@ -294,7 +294,7 @@ present:
   info_color:           "#2E4B7A"       # нейтрально-информационный акцент
   heading_font:         "Cambria"
   body_font:            "Calibri"
-  direction_palette:    ["#E4002B", "#2E4B7A", "#0F7A8C", "#2F7D54"]
+  direction_palette:    ["#C05621", "#2E4B7A", "#0F7A8C", "#2F7D54"]
   role_color_map:
     SA: "#B37D0C"
     ADR: "#B37D0C"

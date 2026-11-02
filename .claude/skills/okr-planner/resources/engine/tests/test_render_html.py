@@ -20,5 +20,5 @@ def test_render_html_file(tmp_path):
     out = render_html_file(FIX, tmp_path / "deck.html")
     doc = out.read_text(encoding="utf-8")
     assert out.exists() and doc.startswith("<!doctype html>")
-    assert "Продажа мероприятий TicketsCloud" in doc
+    assert "Продажа мероприятий Партнёр-API" in doc
     assert "http://" not in doc and "https://" not in doc  # self-contained

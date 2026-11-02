@@ -11,5 +11,5 @@ def test_render_pptx_file(tmp_path):
     assert len(prs.slides) >= 6   # title + big_picture + glossary + divider + lifecycle + detail + closings
     all_text = " ".join(sh.text_frame.text for sl in prs.slides
                         for sh in sl.shapes if sh.has_text_frame)
-    assert "Продажа мероприятий TicketsCloud" in all_text
+    assert "Продажа мероприятий Партнёр-API" in all_text
     assert "БАЗИС" in all_text
