@@ -126,10 +126,10 @@ PO: подтверди «ок» (или поправь параметры) → �
 
 Публикуемые страницы (Шаги 2–3) отдают Jira/Confluence-упоминания **макросами**, чтобы PO из документа сразу видел превью и статус. Выбор `content_format`:
 - **`storage`** — макросы как XHTML (надёжно для Jira-макроса). Публикуй тело в storage-формате, заменив ссылки:
-  - Jira: `[JIRA GDSLV-1610](…)` → `<ac:structured-macro ac:name="jira"><ac:parameter ac:name="key">GDSLV-1610</ac:parameter></ac:structured-macro>`
+  - Jira: `[JIRA PROJ-124](…)` → `<ac:structured-macro ac:name="jira"><ac:parameter ac:name="key">PROJ-124</ac:parameter></ac:structured-macro>`
   - Confluence-страница: → `<ac:link><ri:page ri:content-title="<Заголовок>"/></ac:link>` (или макрос `include`/`excerpt-include` для превью содержимого).
 - **`wiki`** — легче совмещать макросы с таблицами/текстом:
-  - Jira: `{jira:key=GDSLV-1610}` · Confluence: `[<Заголовок страницы>]` или `{include:<Space>:<Заголовок>}`.
+  - Jira: `{jira:key=PROJ-124}` · Confluence: `[<Заголовок страницы>]` или `{include:<Space>:<Заголовок>}`.
 
 Списки внутри ячеек таблиц (ПРОБЛЕМА/TOBE и т.п., ЗМ-011) — настоящим `<ul><li>…</li></ul>` (в `storage` — как есть; в `wiki` — списком, не `•`), чтобы рендерился корректный маркированный список с висячим отступом, а не плоский глиф `•`.
 

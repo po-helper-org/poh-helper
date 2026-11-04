@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 
-_DEFAULT_PALETTE = ["#E4002B", "#2E4B7A", "#0F7A8C", "#2F7D54"]
+_DEFAULT_PALETTE = ["#C05621", "#2E4B7A", "#0F7A8C", "#2F7D54"]
 _DEFAULT_ROLES = {
     "BA": "#B37D0C", "SA": "#B37D0C", "ADR": "#B37D0C",
     "BE": "#2E4B7A", "FE": "#2E4B7A",
@@ -11,7 +11,7 @@ _DEFAULT_ROLES = {
 
 @dataclass
 class Theme:
-    accent: str = "#E4002B"
+    accent: str = "#C05621"
     heading: str = "#1C2333"
     body: str = "#434C60"
     muted: str = "#8B94A6"

@@ -20,7 +20,7 @@ Follow-up к #113 / PR #122.
 - `demo_synthesis.md`: правило 7 (точность «X, не Y» в шагах).
 - `letter_format.md`: 4 блока (Цель → How to demo → Вопросы → Границы), тир «если возможно».
 - `SKILL.md` / `commands/bft-fast.md`: synth-этап под 4 блока.
-- Голден: `golden_letter.md` +Цель; новая пара `golden_summary_precision.md` / `golden_letter_precision.md` (Ticketscloud/Kafka) — регресс на точность + optional.
+- Голден: `golden_letter.md` +Цель; новая пара `golden_summary_precision.md` / `golden_letter_precision.md` (Партнёр-API/Kafka) — регресс на точность + optional.
 - Спека системных требований + README синхронизированы.
 
 ## Верификация

@@ -8,7 +8,7 @@ def test_loads_top_level():
     assert isinstance(spec, DeckSpec)
     assert spec.product == "GDS"
     assert spec.quarter == "Q3-2026"
-    assert spec.footer == "GDS · Q3 · витрина Ticketland"
+    assert spec.footer == "GDS · Q3 · витрина Афиша"
     assert len(spec.directions) == 1
 
 def test_nested_kr():
@@ -19,7 +19,7 @@ def test_nested_kr():
     assert kr.now.startswith("Мероприятия")
     assert kr.steps[1].role == "BE"
     assert kr.sprint_cells["S2"] == ["BE·Go"]
-    assert kr.owners == ["Чеботков", "Ананьев"]
+    assert kr.owners == ["Карпов", "Громов"]
     assert kr.src == "OKR-Q3-2026.md#KR-1.1"
 
 def test_authored_block():

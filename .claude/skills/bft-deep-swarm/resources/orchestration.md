@@ -18,7 +18,7 @@
 5. bounds: ось 3 (enrichment.md §Границы).
 
 ### SYNC (укладка в канон)
-6. draft: /bft-draft — обогащённый seed → канон-структура MTS.
+6. draft: /bft-draft — обогащённый seed → корпоративная канон-структура.
 7. verify: grounding_verifier.md §типизация.
 8. validate: /bft-validate — hard-gates + Светофор. Convergence-stop (grounding_verifier.md §convergence).
 9. citation: grounding_verifier.md §forced-citation.

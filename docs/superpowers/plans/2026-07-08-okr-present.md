@@ -12,7 +12,7 @@
 
 - **Slide geometry:** 16:9, `13.333in × 7.5in` = `12192000 × 6858000` EMU. HTML stage = `1280 × 720` px.
 - **Fonts:** headings `Cambria`, body/labels `Calibri` (verbatim from эталон).
-- **Theme defaults (verbatim hex from эталон `GDS-Q3-2026.pptx`):** accent `#E4002B`, heading `#1C2333`, body `#434C60`, muted `#8B94A6`, card-bg `#F5F7FB`, direction palette `["#E4002B","#2E4B7A","#0F7A8C","#2F7D54"]`, role→color `{BA:#B37D0C, SA:#B37D0C, ADR:#B37D0C, BE:#2E4B7A, FE:#2E4B7A, QA:#7E56A6, RELEASE:#2F8557, DBA:#0F7A8C}`.
+- **Theme defaults (verbatim hex from эталон `GDS-Q3-2026.pptx`, except accent — neutral placeholder):** accent `#C05621`, heading `#1C2333`, body `#434C60`, muted `#8B94A6`, card-bg `#F5F7FB`, direction palette `["#C05621","#2E4B7A","#0F7A8C","#2F7D54"]`, role→color `{BA:#B37D0C, SA:#B37D0C, ADR:#B37D0C, BE:#2E4B7A, FE:#2E4B7A, QA:#7E56A6, RELEASE:#2F8557, DBA:#0F7A8C}`.
 - **Zero hallucination:** every deck-spec fact carries `src:` (vault anchor) or `authored: true`. No source → the value is `[УТОЧНИТЬ]`, never invented.
 - **Determinism:** renderers take (spec, theme) only, no network, re-runnable (overwrite outputs).
 - **Framework generality:** theme defaults live in code but every value is overridable from `domain-profile.md` `present:` section. The GDS эталон is a fixture/example, never hardcoded into logic.
@@ -103,11 +103,11 @@ def minimal_spec():
 ```yaml
 product: GDS
 quarter: Q3-2026
-subtitle: витрина Ticketland
-footer: "GDS · Q3 · витрина Ticketland"
+subtitle: витрина Афиша
+footer: "GDS · Q3 · витрина Афиша"
 directions:
   - name: Надёжный источник
-    color: "#E4002B"
+    color: "#C05621"
     number: 1
     blurb: "Витрина берёт данные из старой базы БАЗИС и падает вместе с ней."
     objs:
@@ -115,33 +115,33 @@ directions:
         title: Надёжный источник данных
         krs:
           - id: "1.1"
-            title: Продажа мероприятий TicketsCloud на витрине
+            title: Продажа мероприятий Партнёр-API на витрине
             now: "Мероприятия продаются через старую базу БАЗИС."
-            becomes: "Те же мероприятия продаются напрямую из TicketsCloud."
+            becomes: "Те же мероприятия продаются напрямую из Партнёр-API."
             steps:
               - {role: SA, text: Исследование коннектора UMC→web_db}
-              - {role: BE, text: TicketsCloud → UMC}
+              - {role: BE, text: Партнёр-API → UMC}
               - {role: QA, text: Отладка генерации виджета}
             risks:
               - {text: "Блокер: дедубликация web_db (KR 1.1.E1)"}
             sprint_cells: {S1: [SA·ADR], S2: [BE·Go], S4: [FE·PHP], S5: [QA]}
-            owners: [Чеботков, Ананьев]
+            owners: [Карпов, Громов]
             src: "OKR-Q3-2026.md#KR-1.1"
 authored:
   market:
     - {value: "≈227 млрд ₽", label: "объём билетного рынка РФ", src: "PO-authored"}
-  quarter_shift: "уводим витрину со старой базы БАЗИС на TicketsCloud"
+  quarter_shift: "уводим витрину со старой базы БАЗИС на Партнёр-API"
   glossary:
     - {term: БАЗИС, plain: "старая билетная база"}
   order_of_work:
     now: ["Докатить кино и рестораны", "Починить критбаги"]
-    august: ["★ Продажи TicketsCloud на витрине"]
+    august: ["★ Продажи Партнёр-API на витрине"]
     later: ["Дешевле Live — исследование"]
   right_now:
     - {title: "Докатить кино на витрину", note: "долг прошлого квартала"}
   after_meeting: "Детальные задачи распишем в JIRA — вместе."
   takeaways:
-    - {title: "Всё крутится вокруг витрины Ticketland", note: "4 направления"}
+    - {title: "Всё крутится вокруг витрины Афиша", note: "4 направления"}
 ```
 
 - [ ] **Step 3: Write the failing test** `tests/test_deckspec.py`
@@ -157,7 +157,7 @@ def test_loads_top_level():
     assert isinstance(spec, DeckSpec)
     assert spec.product == "GDS"
     assert spec.quarter == "Q3-2026"
-    assert spec.footer == "GDS · Q3 · витрина Ticketland"
+    assert spec.footer == "GDS · Q3 · витрина Афиша"
     assert len(spec.directions) == 1
 
 def test_nested_kr():
@@ -168,7 +168,7 @@ def test_nested_kr():
     assert kr.now.startswith("Мероприятия")
     assert kr.steps[1].role == "BE"
     assert kr.sprint_cells["S2"] == ["BE·Go"]
-    assert kr.owners == ["Чеботков", "Ананьев"]
+    assert kr.owners == ["Карпов", "Громов"]
     assert kr.src == "OKR-Q3-2026.md#KR-1.1"
 
 def test_authored_block():
@@ -329,7 +329,7 @@ from engine.theme import Theme, load_theme
 
 def test_defaults_match_etalon():
     t = load_theme(None)
-    assert t.accent == "#E4002B"
+    assert t.accent == "#C05621"
     assert t.heading == "#1C2333"
     assert t.heading_font == "Cambria"
     assert t.body_font == "Calibri"
@@ -351,8 +351,8 @@ def test_unknown_role_falls_back_to_body():
 
 def test_direction_color_cycles():
     t = load_theme(None)
-    assert t.direction_color(0) == "#E4002B"
-    assert t.direction_color(4) == "#E4002B"  # wraps
+    assert t.direction_color(0) == "#C05621"
+    assert t.direction_color(4) == "#C05621"  # wraps
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
@@ -366,7 +366,7 @@ Expected: FAIL — `No module named 'engine.theme'`.
 from __future__ import annotations
 from dataclasses import dataclass, field
 
-_DEFAULT_PALETTE = ["#E4002B", "#2E4B7A", "#0F7A8C", "#2F7D54"]
+_DEFAULT_PALETTE = ["#C05621", "#2E4B7A", "#0F7A8C", "#2F7D54"]
 _DEFAULT_ROLES = {
     "BA": "#B37D0C", "SA": "#B37D0C", "ADR": "#B37D0C",
     "BE": "#2E4B7A", "FE": "#2E4B7A",
@@ -376,7 +376,7 @@ _DEFAULT_ROLES = {
 
 @dataclass
 class Theme:
-    accent: str = "#E4002B"
+    accent: str = "#C05621"
     heading: str = "#1C2333"
     body: str = "#434C60"
     muted: str = "#8B94A6"
@@ -859,11 +859,11 @@ def test_title():
     assert "Что мы делаем" in _texts(els)
 
 def test_big_picture_four_cards():
-    cards = [{"n": i, "title": f"D{i}", "note": "x", "color": "#E4002B"} for i in range(1, 5)]
+    cards = [{"n": i, "title": f"D{i}", "note": "x", "color": "#C05621"} for i in range(1, 5)]
     els = ARCHETYPES["big_picture"]({"kicker": "ОБЩАЯ КАРТИНА",
                                      "headline": "Четыре вещи", "cards": cards}, T)
     # 4 number badges (rects with the direction color) present
-    assert sum(1 for e in els if e.kind == "rect" and e.fill == "#E4002B") >= 1
+    assert sum(1 for e in els if e.kind == "rect" and e.fill == "#C05621") >= 1
     assert "D4" in _texts(els)
 
 def test_why_market_numbers():
@@ -880,7 +880,7 @@ def test_glossary_terms():
 def test_direction_divider():
     els = ARCHETYPES["direction_divider"]({"number": "01", "kicker": "НАПРАВЛЕНИЕ",
                                            "title": "Надёжный источник",
-                                           "blurb": "текст", "color": "#E4002B"}, T)
+                                           "blurb": "текст", "color": "#C05621"}, T)
     assert "Надёжный источник" in _texts(els)
 
 def test_takeaways():
@@ -1107,7 +1107,7 @@ def test_sprint_lifecycle_table_has_chips():
         "kicker": "НАПРАВЛЕНИЕ 1", "headline": "Как работаем",
         "sprints": ["S1", "S2", "S3"],
         "rows": [{"label": "Новый источник", "cells": {"S1": ["SA·ADR"], "S2": ["BE·Go"]}}],
-        "owners": "ADR — Чеботков"}, T)
+        "owners": "ADR — Карпов"}, T)
     assert any(e.kind == "chip" and "SA·ADR" in e.text for e in els)
     # SA chip uses the gold role color
     sa = [e for e in els if e.kind == "chip" and "SA" in e.text][0]
@@ -1117,21 +1117,21 @@ def test_roles_sprint_table():
     els = ARCHETYPES["roles_sprint_table"]({
         "kicker": "РАЗБИВКА", "headline": "Кто над чем",
         "sprints": ["S1", "S2"],
-        "rows": [{"role": "BE", "expertise": "Backend", "people": "Величко",
-                  "cells": {"S1": "TC→UMC"}}],
+        "rows": [{"role": "BE", "expertise": "Backend", "people": "Мельник",
+                  "cells": {"S1": "Партнёр-API→UMC"}}],
         "note": "S1 закоммичен."}, T)
     joined = " ".join(e.text for e in els if e.text)
-    assert "Backend" in joined and "TC→UMC" in joined
+    assert "Backend" in joined and "Партнёр-API→UMC" in joined
 
 def test_now_becomes_detail():
     els = ARCHETYPES["now_becomes_detail"]({
-        "kicker": "KR 1.1", "title": "Продажа TC",
-        "now": "через БАЗИС", "becomes": "напрямую из TC",
-        "stages": [{"label": "Разработка", "steps": [{"role": "BE", "text": "TC→UMC"}]}],
+        "kicker": "KR 1.1", "title": "Продажа Партнёр-API",
+        "now": "через БАЗИС", "becomes": "напрямую из Партнёр-API",
+        "stages": [{"label": "Разработка", "steps": [{"role": "BE", "text": "Партнёр-API→UMC"}]}],
         "risks": ["Блокер дедуб"]}, T)
     joined = " ".join(e.text for e in els if e.text) + " ".join(
         r[0] for e in els for r in (e.runs or []))
-    assert "через БАЗИС" in joined and "напрямую из TC" in joined and "Блокер" in joined
+    assert "через БАЗИС" in joined and "напрямую из Партнёр-API" in joined and "Блокер" in joined
 ```
 
 - [ ] **Step 2: Run to verify new tests fail**
@@ -1310,7 +1310,7 @@ def test_render_html_file(tmp_path):
     out = render_html_file(FIX, tmp_path / "deck.html")
     doc = out.read_text(encoding="utf-8")
     assert out.exists() and doc.startswith("<!doctype html>")
-    assert "Продажа мероприятий TicketsCloud" in doc
+    assert "Продажа мероприятий Партнёр-API" in doc
     assert "http://" not in doc and "https://" not in doc  # self-contained
 ```
 
@@ -1495,7 +1495,7 @@ def test_render_pptx_file(tmp_path):
     assert len(prs.slides) >= 6   # title + big_picture + glossary + divider + lifecycle + detail + closings
     all_text = " ".join(sh.text_frame.text for sl in prs.slides
                         for sh in sl.shapes if sh.has_text_frame)
-    assert "Продажа мероприятий TicketsCloud" in all_text
+    assert "Продажа мероприятий Партнёр-API" in all_text
     assert "БАЗИС" in all_text
 ```
 
@@ -1971,15 +1971,15 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 # Дизайн-система презентации квартала (/okr-present). Пусто → дефолты эталона.
 present:
   product_display_name: ""            # дефолт: profile.product
-  footer_subtitle:      ""            # напр. «витрина Ticketland»
-  accent_color:         "#E4002B"
+  footer_subtitle:      ""            # напр. «витрина Афиша»
+  accent_color:         "#C05621"
   heading_color:        "#1C2333"
   body_color:           "#434C60"
   muted_color:          "#8B94A6"
   card_bg:              "#F5F7FB"
   heading_font:         "Cambria"
   body_font:            "Calibri"
-  direction_palette:    ["#E4002B", "#2E4B7A", "#0F7A8C", "#2F7D54"]
+  direction_palette:    ["#C05621", "#2E4B7A", "#0F7A8C", "#2F7D54"]
   role_color_map:
     SA: "#B37D0C"
     ADR: "#B37D0C"

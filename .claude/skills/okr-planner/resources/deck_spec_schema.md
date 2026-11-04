@@ -9,8 +9,8 @@
 ```yaml
 product: GDS
 quarter: Q3-2026
-subtitle: витрина Ticketland
-footer: "GDS · Q3 · витрина Ticketland"
+subtitle: витрина Афиша
+footer: "GDS · Q3 · витрина Афиша"
 directions: [ ... ]     # список Direction
 authored: { ... }       # блок Authored
 ```
@@ -31,7 +31,7 @@ authored: { ... }       # блок Authored
 ```yaml
 directions:
   - name: Надёжный источник
-    color: "#E4002B"        # опционально; иначе theme.direction_color(index)
+    color: "#C05621"        # опционально; иначе theme.direction_color(index)
     number: 1                # опционально; дефолт = позиция в списке + 1
     blurb: "Витрина берёт данные из старой базы БАЗИС и падает вместе с ней."
     objs: [ ... ]             # список OBJ
@@ -65,16 +65,16 @@ objs:
 ```yaml
 krs:
   - id: "1.1"
-    title: Продажа мероприятий TicketsCloud на витрине
+    title: Продажа мероприятий Партнёр-API на витрине
     now: "Мероприятия продаются через старую базу БАЗИС."
-    becomes: "Те же мероприятия продаются напрямую из TicketsCloud."
+    becomes: "Те же мероприятия продаются напрямую из Партнёр-API."
     steps:
       - {role: SA, text: Исследование коннектора UMC→web_db}
-      - {role: BE, text: TicketsCloud → UMC}
+      - {role: BE, text: Партнёр-API → UMC}
     risks:
       - {text: "Блокер: дедубликация web_db (KR 1.1.E1)"}
     sprint_cells: {S1: [SA·ADR], S2: [BE·Go], S4: [FE·PHP], S5: [QA]}
-    owners: [Чеботков, Ананьев]
+    owners: [Карпов, Громов]
     src: "OKR-Q3-2026.md#KR-1.1"
 ```
 
@@ -122,18 +122,18 @@ risks:  [{text: "..."}]
 authored:
   market:
     - {value: "≈227 млрд ₽", label: "объём билетного рынка РФ", src: "PO-authored"}
-  quarter_shift: "уводим витрину со старой базы БАЗИС на TicketsCloud"
+  quarter_shift: "уводим витрину со старой базы БАЗИС на Партнёр-API"
   glossary:
     - {term: БАЗИС, plain: "старая билетная база"}
   order_of_work:
     now: ["Докатить кино и рестораны", "Починить критбаги"]
-    august: ["★ Продажи TicketsCloud на витрине"]
+    august: ["★ Продажи Партнёр-API на витрине"]
     later: ["Дешевле Live — исследование"]
   right_now:
     - {title: "Докатить кино на витрину", note: "долг прошлого квартала"}
   after_meeting: "Детальные задачи распишем в JIRA — вместе."
   takeaways:
-    - {title: "Всё крутится вокруг витрины Ticketland", note: "4 направления"}
+    - {title: "Всё крутится вокруг витрины Афиша", note: "4 направления"}
 ```
 
 | Поле | Тип | Дефолт | Используется в архетипе |

@@ -65,7 +65,7 @@ cp docs/superpowers/specs/fixtures/2026-07-14-bft-deep-golden-gold.md \
 
 ```markdown
 7. Канон-паритет — обогащённый выход покрывает все 3 оси (ценность/what-if/границы),
-   уложен в канон-структуру MTS (ASIS/PROBLEM/TOBE, БТ/ПТ/ИТ/ФТ/НФТ) и проходит
+   уложен в корпоративную канон-структуру (ASIS/PROBLEM/TOBE, БТ/ПТ/ИТ/ФТ/НФТ) и проходит
    канонические hard-gates /bft-validate на уровне старого БФТ (ориентир). Gate: 🟢/🟡, не 🔴.
 ```
 
@@ -178,7 +178,7 @@ description: "V2 БФТ, роль-Обогатитель. Берёт быстр�
 
 # bft-deep-swarm — Обогатитель БФТ (V2, seed→enrich→sync)
 
-Ты — **Обогатитель БФТ**. Не ре-ран канона с нуля. Берёшь быстрый черновик (письмо bft-fast) как **основу** и наращиваешь глубину, затем укладываешь в канон-структуру MTS. Старый bft-writer = **ориентир качества**, не перезатирается.
+Ты — **Обогатитель БФТ**. Не ре-ран канона с нуля. Берёшь быстрый черновик (письмо bft-fast) как **основу** и наращиваешь глубину, затем укладываешь в корпоративную канон-структуру. Старый bft-writer = **ориентир качества**, не перезатирается.
 
 ## Принципы
 1. **Есть основа.** Обогащаешь seed (Fast-черновик или полный контекст), не генерируешь с нуля.
@@ -205,7 +205,7 @@ Merge-гейт качества — `resources/eval_rubric.md`.
 `../bft-writer/resources/writing_style.md`.
 
 ## Границы навыка
-Не пишет в JIRA/Confluence (стоп на черновике). Не переписывает `bft-*`/`bft-writer` — вызывает `/bft-draft`, `/bft-validate`. Sync-цель = канон-структура MTS.
+Не пишет в JIRA/Confluence (стоп на черновике). Не переписывает `bft-*`/`bft-writer` — вызывает `/bft-draft`, `/bft-validate`. Sync-цель = корпоративная канон-структура.
 ```
 
 - [ ] **Step 2: Verify — скилл читается, ссылки на resources валидны как пути**
@@ -256,7 +256,7 @@ git commit -m "feat(bft-deep): SKILL.md — role-card Обогатителя (se
 5. bounds: ось 3 (enrichment.md §Границы).
 
 ### SYNC (укладка в канон)
-6. draft: /bft-draft — обогащённый seed → канон-структура MTS.
+6. draft: /bft-draft — обогащённый seed → корпоративная канон-структура.
 7. verify: grounding_verifier.md §типизация.
 8. validate: /bft-validate — hard-gates + Светофор. Convergence-stop (grounding_verifier.md §convergence).
 9. citation: grounding_verifier.md §forced-citation.
@@ -399,7 +399,7 @@ description: 'V2 БФТ-Обогатитель — берёт seed (Fast-чер�
 - `[epic_slug]` — опц.; нет → date-slug из темы.
 
 ## Важно
-Роль — Обогатитель (V2). Берёт основу, наращивает глубину, укладывает в канон-структуру MTS. Стоп на валидированном черновике; `/bft-deliver` — отдельный ручной шаг PO. Факт без источника → `[УТОЧНИТЬ]`.
+Роль — Обогатитель (V2). Берёт основу, наращивает глубину, укладывает в корпоративную канон-структуру. Стоп на валидированном черновике; `/bft-deliver` — отдельный ручной шаг PO. Факт без источника → `[УТОЧНИТЬ]`.
 
 ## Инструкция для LLM
 1. Загрузить `skills/bft-deep-swarm/SKILL.md` + resources (orchestration/enrichment/grounding_verifier/eval_rubric).
@@ -563,7 +563,7 @@ Expected: 7 метрик → все hard-gates PASS → `MERGE-OK`. Особо: 
 ### V2 БФТ-конвейер: Fast → Deep → Sync
 - `/bft-fast <summary>` — быстрое письмо-seed (≤5 мин) + авто-форк фоновой глубины (`--no-deep` отключает).
 - Deep (`bft-deep-swarm` / `/bft-deep`) — Обогатитель: наращивает seed по 3 осям (ценность / what-if / границы), автономно, с полным контекстом.
-- Sync — укладка в канон-структуру MTS + `/bft-validate`. Канонический `bft-writer` = ориентир качества, не заменяется.
+- Sync — укладка в корпоративную канон-структуру + `/bft-validate`. Канонический `bft-writer` = ориентир качества, не заменяется.
 - Стоп на валидированном черновике; запись в JIRA/Confluence (`/bft-deliver`) — ручной гейт PO.
 - Качество гарантируется merge-гейтом: `skills/bft-deep-swarm/resources/eval_rubric.md` (7 метрик, hallucination=0).
 ```

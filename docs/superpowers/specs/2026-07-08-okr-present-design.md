@@ -3,7 +3,7 @@
 **Дата:** 2026-07-08 · **Ветка:** `fix/quarter-presentation` · **Скилл:** `okr-planner` (новая финальная стадия)
 
 **Эталоны (target-структура, не инстанс):**
-`GDS-Q3-2026.pptx` (30 слайдов, 16:9) и `Roadmap-GDS-Q3-2026.xlsx` — из vault MTS. Роль как у `examples/ideal_*.md`: показывают целевую форму, сам скилл — generic.
+`GDS-Q3-2026.pptx` (30 слайдов, 16:9) и `Roadmap-GDS-Q3-2026.xlsx` — из корпоративного vault. Роль как у `examples/ideal_*.md`: показывают целевую форму, сам скилл — generic.
 
 ---
 
@@ -82,7 +82,7 @@
     render_html.py          # deck-spec + theme → deck.html (поверхность правок)
     render_pptx.py          # python-pptx: deck-spec + theme → .pptx (финал)
     render_roadmap.py       # openpyxl:  deck-spec + theme → .xlsx
-    theme.md                # дизайн-система (общая для HTML и PPTX; дефолт = эталон MTS)
+    theme.md                # дизайн-система (общая для HTML и PPTX; дефолт = эталон)
     present_gates.md        # Светофор консистентности
   examples/
     ideal_deck_spec.md      # эталонная deck-spec (реверс из GDS-Q3-2026)
@@ -101,7 +101,7 @@
 Структурированный markdown/YAML: шапка (product, quarter, subtitle, footer), `directions[]` (name, color, objs[]), на каждый KR — `now`, `becomes`, `steps[]` (role, text), `risks[]`, `sprint_cells{Sx: [role·stack]}`, `owners`. Плюс `authored{}` блок (market, glossary, closing). Каждое поле — `src:` (vault-якорь) или `authored:true`. `render_html.py` и `render_pptx.py` берут всё; `render_roadmap.py` — `directions[].objs[].kr.sprint_cells`.
 
 ### 5.3 Тема (дизайн-система, дефолт = эталон, override в profile)
-Дефолты из эталона: accent `#E4002B`, navy heading `#1C2333` (Cambria), body `#434C60` (Calibri), палитра направлений `[#E4002B,#2E4B7A,#0F7A8C,#2F7D54]`, роль→цвет (BA/SA/ADR `#B37D0C`, BE/FE `#2E4B7A`, QA `#7E56A6`, RELEASE `#2F8557`, DBA `#0F7A8C`), muted `#8B94A6`, фон-карточки `#F5F7FB`, 16:9 (13.33×7.5"). Все переопределяются секцией `present` в domain-profile → каркас generic.
+Дефолты из эталона (акцент — нейтральный плейсхолдер): accent `#C05621`, navy heading `#1C2333` (Cambria), body `#434C60` (Calibri), палитра направлений `[#C05621,#2E4B7A,#0F7A8C,#2F7D54]`, роль→цвет (BA/SA/ADR `#B37D0C`, BE/FE `#2E4B7A`, QA `#7E56A6`, RELEASE `#2F8557`, DBA `#0F7A8C`), muted `#8B94A6`, фон-карточки `#F5F7FB`, 16:9 (13.33×7.5"). Все переопределяются секцией `present` в domain-profile → каркас generic.
 
 ---
 
@@ -116,10 +116,10 @@ paths:
 
 present:
   product_display_name: ""            # дефолт: profile.product / [УТОЧНИТЬ]
-  footer_subtitle:      ""            # напр. «витрина Ticketland»
-  accent_color:         "#E4002B"
+  footer_subtitle:      ""            # напр. «витрина Афиша»
+  accent_color:         "#C05621"
   heading_color:        "#1C2333"
-  direction_palette:    ["#E4002B","#2E4B7A","#0F7A8C","#2F7D54"]
+  direction_palette:    ["#C05621","#2E4B7A","#0F7A8C","#2F7D54"]
   role_color_map:       {SA: "#B37D0C", ADR: "#B37D0C", BA: "#B37D0C",
                          BE: "#2E4B7A", FE: "#2E4B7A", QA: "#7E56A6",
                          RELEASE: "#2F8557", DBA: "#0F7A8C"}

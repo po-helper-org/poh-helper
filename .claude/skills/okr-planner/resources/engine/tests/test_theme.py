@@ -2,7 +2,7 @@ from engine.theme import Theme, load_theme
 
 def test_defaults_match_etalon():
     t = load_theme(None)
-    assert t.accent == "#E4002B"
+    assert t.accent == "#C05621"
     assert t.heading == "#1C2333"
     assert t.heading_font == "Cambria"
     assert t.body_font == "Calibri"
@@ -24,5 +24,5 @@ def test_unknown_role_falls_back_to_body():
 
 def test_direction_color_cycles():
     t = load_theme(None)
-    assert t.direction_color(0) == "#E4002B"
-    assert t.direction_color(4) == "#E4002B"  # wraps
+    assert t.direction_color(0) == "#C05621"
+    assert t.direction_color(4) == "#C05621"  # wraps
